@@ -16,7 +16,6 @@
 		1C29EAC829894615001BD219 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C29EAC729894615001BD219 /* TabBarView.swift */; };
 		1C29EACA2989470F001BD219 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C29EAC92989470F001BD219 /* HomeController.swift */; };
 		1C29EACC2989475B001BD219 /* FavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C29EACB2989475B001BD219 /* FavController.swift */; };
-		1C29EACE29894AD6001BD219 /* EventHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C29EACD29894AD6001BD219 /* EventHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +30,6 @@
 		1C29EAC729894615001BD219 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		1C29EAC92989470F001BD219 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		1C29EACB2989475B001BD219 /* FavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavController.swift; sourceTree = "<group>"; };
-		1C29EACD29894AD6001BD219 /* EventHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +80,6 @@
 				1C29EAC729894615001BD219 /* TabBarView.swift */,
 				1C29EAC92989470F001BD219 /* HomeController.swift */,
 				1C29EACB2989475B001BD219 /* FavController.swift */,
-				1C29EACD29894AD6001BD219 /* EventHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -163,7 +160,6 @@
 				1C29EAC829894615001BD219 /* TabBarView.swift in Sources */,
 				1C29EACC2989475B001BD219 /* FavController.swift in Sources */,
 				1C29EAB52989451C001BD219 /* SceneDelegate.swift in Sources */,
-				1C29EACE29894AD6001BD219 /* EventHeaderView.swift in Sources */,
 				1C29EACA2989470F001BD219 /* HomeController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
