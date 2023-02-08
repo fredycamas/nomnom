@@ -19,6 +19,15 @@ class TabBarView: UITabBarController{
         let homeController = HomeController()
         let favController = FavController()
         
+        homeController.tabBarItem.image = UIImage(systemName: "person")
+        homeController.title = "Home"
+        favController.title = "Favorite"
+       
+
+        
+        favController.tabBarItem.image = UIImage(systemName: "star")
+        favController.tabBarItem.badgeValue = "1"
+        
         self.setViewControllers([homeController, favController], animated: false)
         self.tabBar.backgroundColor = .blue
     }

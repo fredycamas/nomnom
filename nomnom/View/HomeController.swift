@@ -14,7 +14,7 @@ class HomeController: UICollectionViewController  {
       
        let layout = UICollectionViewFlowLayout()
        // let layout = makeCompositionalLayoutViewControllerWithZoomingCarousel2()
-        
+
         super.init(collectionViewLayout: layout)
     }
     
@@ -25,14 +25,18 @@ class HomeController: UICollectionViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+      
         collectionView.register(SearchHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchHeaderView.id)
-                                
                                 
         //collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         collectionView.register(ResultEvent.self, forCellWithReuseIdentifier: ResultEvent.id)
        // collectionView.register(SearchHeaderView.self, forCellWithReuseIdentifier: SearchHeaderView.id)
         collectionView.keyboardDismissMode = .interactive
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 111, right: 0)
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         
     }
     
@@ -72,7 +76,7 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
-        return CGSize(width: view.frame.width, height: 300)
+        return CGSize(width: view.frame.width, height: 330)
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

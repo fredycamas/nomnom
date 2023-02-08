@@ -8,19 +8,18 @@
 import UIKit
 
 extension UITextField {
-    func setIcon(_ image: UIImage,size: Int) {
-        
+    
+    func addAssesory(_ image: UIImage, size: Int, withColor: UIColor){
         let padding = 8
+        let outerBounds = UIView(frame: CGRect(x: 0, y: 0, width: size+padding, height: size))
+        let imageAssesory = UIImageView(frame: CGRect(x: -padding, y: 0, width: size, height: size))
         
-        let outerView = UIView(frame: CGRect(x: 0, y: 0, width: size+padding, height: size) )
+        imageAssesory.image = image
+        imageAssesory.tintColor = withColor
+        outerBounds.addSubview(imageAssesory)
         
-        let iconView  = UIImageView(frame: CGRect(x: -padding, y: 0, width: size, height: size))
         
-        iconView.image = image
-        iconView.tintColor = .red
-        outerView.addSubview(iconView)
-        
-        rightView = outerView
+        rightView = outerBounds
         rightViewMode = .always
     }
 }

@@ -11,5 +11,7 @@ class FavController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tabBarItem.badgeValue = "2"
     }
 }

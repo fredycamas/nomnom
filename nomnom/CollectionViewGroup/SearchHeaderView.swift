@@ -61,6 +61,12 @@ class SearchHeaderView: UICollectionReusableView, UICollectionViewDelegate {
         searchHeaderTextField.rightAnchor.constraint(equalTo: rightAnchor, constant: -24).isActive = true
         searchHeaderTextField.widthAnchor.constraint(equalToConstant: 0).isActive = true
         searchHeaderTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+       
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(textFieldTapped(tapGestureRecognizer:)))
+        
+        searchHeaderTextField.rightView?.isUserInteractionEnabled = true
+        searchHeaderTextField.rightView?.addGestureRecognizer(tapGestureRecognizer)
+        
         
         addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -69,7 +75,7 @@ class SearchHeaderView: UICollectionReusableView, UICollectionViewDelegate {
         collectionView.bottomAnchor.constraint(equalTo:bottomAnchor ,constant: 0).isActive = false
         collectionView.rightAnchor.constraint(equalTo: rightAnchor, constant: -24).isActive = true
         collectionView.widthAnchor.constraint(equalToConstant: 0).isActive = true
-        collectionView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        collectionView.heightAnchor.constraint(equalToConstant: 140).isActive = true
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -110,13 +116,13 @@ class SearchHeaderView: UICollectionReusableView, UICollectionViewDelegate {
         textField.textColor = .black
         textField.layer.borderWidth = 0.5
         textField.layer.cornerRadius = 40/2
-        textField.setIcon(UIImage(systemName: "magnifyingglass")!, size: 25)
+        textField.addAssesory(UIImage(systemName: "magnifyingglass")!, size: 25, withColor: .red)
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 9, height: textField.frame.height))
         textField.leftViewMode = .always
        
         textField.layer.masksToBounds = true
         textField.layer.borderColor = UIColor.lightGray.cgColor
-        textField.returnKeyType = .next
+        textField.returnKeyType = .search
         
         return textField
         
@@ -130,6 +136,14 @@ lazy var collectionView: UICollectionView = {
     collectionView.backgroundColor = .white
     return collectionView
 }()
+    
+    @objc func textFieldTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        print("hello textfield tapped")
+        
+    }
+    
+  
 
  
    
@@ -146,6 +160,11 @@ extension SearchHeaderView: UICollectionViewDataSource {
         cell.backgroundColor = .red
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("HORIZONTAL View\(indexPath)")
+    }
+    
 
 }
 
