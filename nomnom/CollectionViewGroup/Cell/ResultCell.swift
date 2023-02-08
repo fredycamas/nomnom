@@ -16,16 +16,16 @@ class ResultEvent: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .white
-  
+        backgroundColor = .red
+       
         addSubview(contentTextView)
         
         contentTextView.translatesAutoresizingMaskIntoConstraints = false
-        contentTextView.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 0).isActive = true
+        contentTextView.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 8).isActive = true
         contentTextView.leftAnchor.constraint(equalTo: contentView.leftAnchor,constant: 32).isActive = true
         contentTextView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -9).isActive = false
         contentTextView.rightAnchor.constraint(equalTo: contentView.rightAnchor,constant: -32).isActive = false
-        contentTextView.widthAnchor.constraint(equalToConstant: (frame.width - 50)).isActive = true
+        contentTextView.widthAnchor.constraint(equalToConstant: (frame.width - 62)).isActive = true
         contentTextView.heightAnchor.constraint(equalToConstant: 200).isActive =  true
         
         

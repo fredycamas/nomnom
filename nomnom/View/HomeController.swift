@@ -30,6 +30,7 @@ class HomeController: UICollectionViewController  {
                                 
         //collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         collectionView.register(ResultEvent.self, forCellWithReuseIdentifier: ResultEvent.id)
+       // collectionView.register(SearchHeaderView.self, forCellWithReuseIdentifier: SearchHeaderView.id)
         collectionView.keyboardDismissMode = .interactive
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 111, right: 0)
         
@@ -58,6 +59,12 @@ extension HomeController {
             //cell.delegate = self
         return cell
 
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        print("CELL COLLECTIONVIEW\(indexPath)")
+      
     }
 }
 
