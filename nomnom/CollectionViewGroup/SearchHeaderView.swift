@@ -14,6 +14,7 @@ protocol SearchHeaderDelegate {
 class SearchHeaderView: UICollectionReusableView, UICollectionViewDelegate {
     
     static let id = "searchHeaderView"
+    
    
     var delegate: SearchHeaderDelegate?
     

@@ -9,7 +9,7 @@ import UIKit
 
 
 
-class ResultEvent: UICollectionViewCell {
+class SearchResultCell: UICollectionViewCell {
     
     static let id = "ResultEventCell"
    
