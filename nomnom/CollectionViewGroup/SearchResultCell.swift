@@ -43,20 +43,20 @@ class SearchResultCell: UICollectionViewCell {
         view.layer.cornerRadius = 15
         view.backgroundColor = .white
         
-        view.addSubview(backGroundImageView)
-        backGroundImageView.translatesAutoresizingMaskIntoConstraints = false
-        backGroundImageView.topAnchor.constraint(equalTo: view.topAnchor,constant: 0).isActive = true
-        backGroundImageView.leftAnchor.constraint(equalTo: view.leftAnchor,constant: 0).isActive = true
-        backGroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: 0).isActive = false
-        backGroundImageView.rightAnchor.constraint(equalTo: view.rightAnchor,constant: 0).isActive = false
-        backGroundImageView.widthAnchor.constraint(equalToConstant: frame.width).isActive = true
-        backGroundImageView.heightAnchor.constraint(equalToConstant: 100).isActive =  true
+        view.addSubview(businessImageView)
+        businessImageView.translatesAutoresizingMaskIntoConstraints = false
+        businessImageView.topAnchor.constraint(equalTo: view.topAnchor,constant: 0).isActive = true
+        businessImageView.leftAnchor.constraint(equalTo: view.leftAnchor,constant: 0).isActive = true
+        businessImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: 0).isActive = false
+        businessImageView.rightAnchor.constraint(equalTo: view.rightAnchor,constant: 0).isActive = false
+        businessImageView.widthAnchor.constraint(equalToConstant: frame.width).isActive = true
+        businessImageView.heightAnchor.constraint(equalToConstant: 100).isActive =  true
         
     
 
         view.addSubview(titleLabel1)
         titleLabel1.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel1.topAnchor.constraint(equalTo: backGroundImageView.bottomAnchor,constant: 16).isActive = true
+        titleLabel1.topAnchor.constraint(equalTo: businessImageView.bottomAnchor,constant: 16).isActive = true
         titleLabel1.leftAnchor.constraint(equalTo: view.leftAnchor,constant: 16).isActive = true
         titleLabel1.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: 0).isActive = false
         titleLabel1.rightAnchor.constraint(equalTo: view.rightAnchor,constant: 0).isActive = true
@@ -67,7 +67,7 @@ class SearchResultCell: UICollectionViewCell {
         return view
         
     }()
-    let backGroundImageView: UIImageView = {
+    let businessImageView: UIImageView = {
         
         let image = UIImageView()
         image.image = UIImage(systemName: "person")

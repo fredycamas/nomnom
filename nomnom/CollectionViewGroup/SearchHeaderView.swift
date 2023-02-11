@@ -174,7 +174,7 @@ extension SearchHeaderView: UICollectionViewDataSource {
     
 func makeCompositionalLayoutViewControllerWithZoomingCarousel() -> UICollectionViewCompositionalLayout {
         let compositionalLayout: UICollectionViewCompositionalLayout = {
-            let fraction: CGFloat = 1.0 / 3.0
+            let fraction: CGFloat = 1.0 / 4.0
             
             // Item
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))

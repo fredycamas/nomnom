@@ -26,11 +26,20 @@ class HomeController: UICollectionViewController  {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    var businessManagment = BusinessManagment()
+    var businessCardContainer: [BusinessCardModel] = []
+    let CPLatitude: Double = 40.782483
+    let CPLongitude: Double = -73.963540
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      
+        businessManagment.delegate = self
+        
+        businessManagment.fetchData(latitude: CPLatitude, longitude: CPLongitude, category: "restaurants",
+                  limit: 20, sortBy: "distance", locale: "en_US") { (response, error) in
+            
+        }
         collectionView.register(SearchHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchHeaderView.id)
                                 
         //collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
@@ -59,13 +68,16 @@ extension HomeController: SearchHeaderDelegate {
 extension HomeController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 100
+        return  businessCardContainer.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCell.id, for: indexPath) as! SearchResultCell
             //cell.delegate = self
+        
+        cell.titleLabel1.text = "hello im here"
+        cell.businessImageView.load(urlString: businessCardContainer[indexPath.row].urlImage)
         return cell
 
     }
@@ -96,5 +108,35 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: (view.frame.width), height: (view.frame.height/2) - 210)
       
     }
+
+}
+
+
+extension UIImageView {
+    func load(urlString: String) {
+        if let url = URL(string: urlString) {
+            DispatchQueue.global().async { [weak self] in
+                if let data = try? Data(contentsOf: url) {
+                    if let image = UIImage(data: data) {
+                        DispatchQueue.main.async {
+                            self?.image = image
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+extension HomeController: BusinessManagmentDelegate{
+    func didUpdateBusiness(businessData: [BusinessCardModel]) {
+        DispatchQueue.main.async {
+            self.businessCardContainer = businessData
+            self.collectionView.reloadData()
+        }
+       
+    }
+
 
 }
