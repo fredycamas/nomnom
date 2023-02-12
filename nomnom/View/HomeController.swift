@@ -76,8 +76,11 @@ extension HomeController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCell.id, for: indexPath) as! SearchResultCell
             //cell.delegate = self
         
-        cell.titleLabel1.text = "hello im here"
+        
         cell.businessImageView.load(urlString: businessCardContainer[indexPath.row].urlImage)
+        cell.nameBusiness.text = businessCardContainer[indexPath.row].name
+        cell.priceBusiness.text = businessCardContainer[indexPath.row].price
+        cell.rateBusiness.text = String("Rate: \(businessCardContainer[indexPath.row].rating)")
         return cell
 
     }
