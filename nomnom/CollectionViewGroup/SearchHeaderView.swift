@@ -11,7 +11,7 @@ protocol SearchHeaderDelegate {
     func searchBtnPressed(view: SearchHeaderView)
 }
 
-class SearchHeaderView: UICollectionReusableView, UICollectionViewDelegate {
+class SearchHeaderView: UICollectionReusableView, UICollectionViewDelegate, UITextFieldDelegate {
     
     static let id = "searchHeaderView"
     
@@ -53,8 +53,10 @@ class SearchHeaderView: UICollectionReusableView, UICollectionViewDelegate {
         subSearchTitleHeader.heightAnchor.constraint(equalToConstant: 36).isActive = true
         
       
+        searchHeaderTextField.delegate = self
         
         addSubview(searchHeaderTextField)
+        
         searchHeaderTextField.translatesAutoresizingMaskIntoConstraints = false
         searchHeaderTextField.topAnchor.constraint(equalTo: subSearchTitleHeader.bottomAnchor,constant: 16).isActive = true
         searchHeaderTextField.leftAnchor.constraint(equalTo: leftAnchor, constant:  24).isActive = true
@@ -144,8 +146,14 @@ lazy var collectionView: UICollectionView = {
         
     }
     
+    
   
 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        print("\(textField.text)")
+        return true
+    }
  
    
 }
