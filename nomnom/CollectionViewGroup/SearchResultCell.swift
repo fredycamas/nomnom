@@ -62,6 +62,16 @@ class SearchResultCell: UICollectionViewCell {
         nameBusiness.rightAnchor.constraint(equalTo: view.rightAnchor,constant: 0).isActive = true
         nameBusiness.widthAnchor.constraint(equalToConstant: 0).isActive = true
         nameBusiness.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        
+     
+        view.addSubview(likeButton)
+        likeButton.translatesAutoresizingMaskIntoConstraints = false
+        likeButton.topAnchor.constraint(equalTo: businessImageView.bottomAnchor,constant: 8).isActive = true
+        likeButton.leftAnchor.constraint(equalTo: nameBusiness.leftAnchor).isActive = true
+        likeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: 0).isActive = false
+        likeButton.rightAnchor.constraint(equalTo: view.rightAnchor,constant: -32).isActive = true
+        likeButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        likeButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
        
         view.addSubview(priceBusiness)
         priceBusiness.translatesAutoresizingMaskIntoConstraints = false
@@ -96,6 +106,17 @@ class SearchResultCell: UICollectionViewCell {
         return image
         
     }()
+    
+    let likeButton: UIButton = {
+    
+        var likeBtn = UIButton()
+        likeBtn.setTitle("Like", for: .normal)
+        likeBtn.setTitleColor(.black, for: .normal)
+        likeBtn.addTarget(SearchResultCell.self, action: #selector(likeButtonTapped), for: .touchUpInside)
+        return likeBtn
+        
+    }()
+    
     let nameBusiness: UILabel = {
         let label = UILabel()
         label.text = "coming soon..."
@@ -127,4 +148,10 @@ class SearchResultCell: UICollectionViewCell {
         label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         return label
     }()
+    
+    @objc func likeButtonTapped() {
+        print("like")
+      }
+    
+    
 }
