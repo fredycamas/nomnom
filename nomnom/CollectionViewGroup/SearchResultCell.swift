@@ -12,6 +12,8 @@ import UIKit
 class SearchResultCell: UICollectionViewCell {
     
     static let id = "ResultEventCell"
+    
+    let likeButton = UIButton(type: .custom)
    
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,7 +29,23 @@ class SearchResultCell: UICollectionViewCell {
         contentTextView.rightAnchor.constraint(equalTo: contentView.rightAnchor,constant: -16).isActive = false
         contentTextView.widthAnchor.constraint(equalToConstant: (frame.width - 32)).isActive = true
         contentTextView.heightAnchor.constraint(equalToConstant: 240).isActive =  true
+//
+//        likeButton.setImage(UIImage(named: "like"), for: .normal)
+//        likeButton.setImage(UIImage(named: "liked"), for: .selected)
         
+        
+        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        likeButton.setImage(UIImage(systemName: "heart_fill"), for: .selected)
+        likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
+        contentView.addSubview(likeButton)
+        
+        likeButton.translatesAutoresizingMaskIntoConstraints = false
+        likeButton.topAnchor.constraint(equalTo: businessImageView.bottomAnchor,constant: 8).isActive = true
+        likeButton.leftAnchor.constraint(equalTo: nameBusiness.leftAnchor).isActive = true
+        likeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: 0).isActive = false
+        likeButton.rightAnchor.constraint(equalTo: contentView.rightAnchor,constant: -32).isActive = true
+        likeButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        likeButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
 
     }
@@ -64,15 +82,6 @@ class SearchResultCell: UICollectionViewCell {
         nameBusiness.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
      
-        view.addSubview(likeButton)
-        likeButton.translatesAutoresizingMaskIntoConstraints = false
-        likeButton.topAnchor.constraint(equalTo: businessImageView.bottomAnchor,constant: 8).isActive = true
-        likeButton.leftAnchor.constraint(equalTo: nameBusiness.leftAnchor).isActive = true
-        likeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: 0).isActive = false
-        likeButton.rightAnchor.constraint(equalTo: view.rightAnchor,constant: -32).isActive = true
-        likeButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        likeButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
-       
         view.addSubview(priceBusiness)
         priceBusiness.translatesAutoresizingMaskIntoConstraints = false
         priceBusiness.topAnchor.constraint(equalTo: nameBusiness.bottomAnchor,constant: 8).isActive = true
@@ -107,15 +116,6 @@ class SearchResultCell: UICollectionViewCell {
         
     }()
     
-    let likeButton: UIButton = {
-    
-        var likeBtn = UIButton()
-        likeBtn.setTitle("Like", for: .normal)
-        likeBtn.setTitleColor(.black, for: .normal)
-        likeBtn.addTarget(SearchResultCell.self, action: #selector(likeButtonTapped), for: .touchUpInside)
-        return likeBtn
-        
-    }()
     
     let nameBusiness: UILabel = {
         let label = UILabel()
@@ -149,9 +149,12 @@ class SearchResultCell: UICollectionViewCell {
         return label
     }()
     
+//    @objc func likeButtonTapped() {
+//        print("like")
+//      }
+    
     @objc func likeButtonTapped() {
-        print("like")
-      }
-    
-    
+        print("like select4ed")
+           likeButton.isSelected.toggle()
+       }
 }

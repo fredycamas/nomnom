@@ -81,6 +81,7 @@ extension HomeController {
         cell.nameBusiness.text = businessCardContainer[indexPath.row].name
         cell.priceBusiness.text = businessCardContainer[indexPath.row].price
         cell.rateBusiness.text = String("Rate: \(businessCardContainer[indexPath.row].rating)")
+        cell.likeButton.isSelected = true
         return cell
 
     }
