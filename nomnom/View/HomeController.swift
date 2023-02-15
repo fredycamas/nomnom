@@ -31,15 +31,17 @@ class HomeController: UICollectionViewController  {
     let CPLatitude: Double = 40.782483
     let CPLongitude: Double = -73.963540
     
+    var searchText:String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         businessManagment.delegate = self
         
-        businessManagment.fetchData(latitude: CPLatitude, longitude: CPLongitude, category: "restaurants",
-                  limit: 20, sortBy: "distance", locale: "en_US") { (response, error) in
-            
-        }
+//        businessManagment.fetchData(latitude: CPLatitude, longitude: CPLongitude, category: "restaurants",
+//                  limit: 20, sortBy: "distance", locale: "en_US") { (response, error) in
+//
+//        }
         collectionView.register(SearchHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchHeaderView.id)
                                 
         //collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
@@ -57,6 +59,16 @@ class HomeController: UICollectionViewController  {
 }
 
 extension HomeController: SearchHeaderDelegate {
+    func txtFile(item: String) {
+        searchText = item
+        
+        businessManagment.fetchData(latitude: CPLatitude, longitude: CPLongitude, category: item,
+                  limit: 20, sortBy: "distance", locale: "en_US") { (response, error) in
+            
+        }
+        
+        collectionView.reloadData()    }
+    
     func searchBtnPressed(view: SearchHeaderView) {
         print("searchTapped")
     }

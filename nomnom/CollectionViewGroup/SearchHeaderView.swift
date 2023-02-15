@@ -9,6 +9,8 @@ import UIKit
 
 protocol SearchHeaderDelegate {
     func searchBtnPressed(view: SearchHeaderView)
+    
+    func txtFile(item:String)
 }
 
 class SearchHeaderView: UICollectionReusableView, UICollectionViewDelegate, UITextFieldDelegate {
@@ -152,6 +154,10 @@ lazy var collectionView: UICollectionView = {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         print("\(textField.text)")
+        
+        if let newtext = textField.text {
+            delegate?.txtFile(item: newtext)
+        }
         return true
     }
  
