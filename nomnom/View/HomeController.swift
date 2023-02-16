@@ -38,10 +38,10 @@ class HomeController: UICollectionViewController  {
         
         businessManagment.delegate = self
         
-//        businessManagment.fetchData(latitude: CPLatitude, longitude: CPLongitude, category: "restaurants",
-//                  limit: 20, sortBy: "distance", locale: "en_US") { (response, error) in
-//
-//        }
+        businessManagment.fetchData(latitude: CPLatitude, longitude: CPLongitude, category: "restaurants",
+                  limit: 20, sortBy: "distance", locale: "en_US") { (response, error) in
+
+        }
         collectionView.register(SearchHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchHeaderView.id)
                                 
         //collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
