@@ -33,10 +33,11 @@ struct BusinessManagment {
     
     func performRequest(businessURL:String){
        
-        let url = URL(string: businessURL)
+        guard  let url = URL(string: businessURL) else {return}
+          
         
        
-        var request = URLRequest(url: url!)
+       var request = URLRequest(url: url)
         request.setValue("Bearer \(apikey)", forHTTPHeaderField: "Authorization")
         request.httpMethod = "GET"
         
