@@ -45,6 +45,38 @@ class ExpandFeatureController: UIViewController {
         return image
         
     }()
+    let nameBusiness: UILabel = {
+        let label = UILabel()
+        label.text = "coming soon..."
+        label.textColor = .red
+        label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        return label
+    }()
+    
+    let addressBusiness: UILabel = {
+        let label = UILabel()
+        label.text = "coming soon..."
+        label.textColor = .red
+        label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        return label
+    }()
+    
+    let priceBusiness: UILabel = {
+        let label = UILabel()
+        label.text = "coming soon..."
+        label.textColor = .red
+        label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        return label
+    }()
+    
+    let rateBusiness: UILabel = {
+        let label = UILabel()
+        label.text = "coming soon..."
+        label.textColor = .red
+        label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        return label
+    }()
+    
 
 }
 
