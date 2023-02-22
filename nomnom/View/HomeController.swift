@@ -99,9 +99,10 @@ extension HomeController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("We are here \(indexPath)")
+        let expandedVC = ExpandFeatureController()
         
-        print("CELL COLLECTIONVIEW\(indexPath)")
-      
+            navigationController?.pushViewController(expandedVC, animated: true)
     }
 }
 

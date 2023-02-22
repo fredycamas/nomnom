@@ -19,8 +19,12 @@ class TabBarView: UITabBarController{
         let homeController = HomeController()
         let favController = FavController()
         
+        //let navController = UINavigationController(rootViewController: myCollectionVC)
+        //self.present(navController, animated: true, completion: nil)
+        
         homeController.tabBarItem.image = UIImage(systemName: "person")
         homeController.title = "Home"
+        let navController = UINavigationController(rootViewController: homeController)
         favController.title = "Favorite"
        
 
@@ -28,7 +32,9 @@ class TabBarView: UITabBarController{
         favController.tabBarItem.image = UIImage(systemName: "star")
         favController.tabBarItem.badgeValue = "1"
         
-        self.setViewControllers([homeController, favController], animated: false)
+        
+        
+        self.setViewControllers([navController, favController], animated: false)
         self.tabBar.backgroundColor = .blue
     }
 }
