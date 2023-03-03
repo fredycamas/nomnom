@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1C29EAB32989451C001BD219 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C29EAB22989451C001BD219 /* AppDelegate.swift */; };
 		1C29EAB52989451C001BD219 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C29EAB42989451C001BD219 /* SceneDelegate.swift */; };
-		1C29EAB72989451C001BD219 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C29EAB62989451C001BD219 /* ViewController.swift */; };
+		1C29EAB72989451C001BD219 /* SplashScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C29EAB62989451C001BD219 /* SplashScreenController.swift */; };
 		1C29EABA2989451C001BD219 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C29EAB82989451C001BD219 /* Main.storyboard */; };
 		1C29EABC2989451D001BD219 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C29EABB2989451D001BD219 /* Assets.xcassets */; };
 		1C29EABF2989451D001BD219 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C29EABD2989451D001BD219 /* LaunchScreen.storyboard */; };
@@ -17,6 +17,7 @@
 		1C29EACA2989470F001BD219 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C29EAC92989470F001BD219 /* HomeController.swift */; };
 		1C29EACC2989475B001BD219 /* FavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C29EACB2989475B001BD219 /* FavController.swift */; };
 		1C5F00A32991882D00662BA0 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5F00A22991882D00662BA0 /* SearchResultCell.swift */; };
+		1C735C3029B264A400E87F50 /* OnBoardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C735C2F29B264A400E87F50 /* OnBoardingController.swift */; };
 		1CCAB2A129A07F6900118D8C /* ExpandFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCAB2A029A07F6900118D8C /* ExpandFeature.swift */; };
 		1CE58A67298F49F300E35BCF /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE58A66298F49F300E35BCF /* SearchHeaderView.swift */; };
 		1CE58A69298F4D4500E35BCF /* ExtensionTextFieldAssesory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE58A68298F4D4500E35BCF /* ExtensionTextFieldAssesory.swift */; };
@@ -29,7 +30,7 @@
 		1C29EAAF2989451C001BD219 /* nomnom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nomnom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C29EAB22989451C001BD219 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C29EAB42989451C001BD219 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1C29EAB62989451C001BD219 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1C29EAB62989451C001BD219 /* SplashScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenController.swift; sourceTree = "<group>"; };
 		1C29EAB92989451C001BD219 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1C29EABB2989451D001BD219 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1C29EABE2989451D001BD219 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -38,6 +39,7 @@
 		1C29EAC92989470F001BD219 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		1C29EACB2989475B001BD219 /* FavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavController.swift; sourceTree = "<group>"; };
 		1C5F00A22991882D00662BA0 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
+		1C735C2F29B264A400E87F50 /* OnBoardingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingController.swift; sourceTree = "<group>"; };
 		1CCAB2A029A07F6900118D8C /* ExpandFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandFeature.swift; sourceTree = "<group>"; };
 		1CE58A66298F49F300E35BCF /* SearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHeaderView.swift; sourceTree = "<group>"; };
 		1CE58A68298F4D4500E35BCF /* ExtensionTextFieldAssesory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTextFieldAssesory.swift; sourceTree = "<group>"; };
@@ -82,7 +84,7 @@
 				1C29EAC6298945FB001BD219 /* View */,
 				1C29EAB22989451C001BD219 /* AppDelegate.swift */,
 				1C29EAB42989451C001BD219 /* SceneDelegate.swift */,
-				1C29EAB62989451C001BD219 /* ViewController.swift */,
+				1C29EAB62989451C001BD219 /* SplashScreenController.swift */,
 				1C29EAB82989451C001BD219 /* Main.storyboard */,
 				1C29EABB2989451D001BD219 /* Assets.xcassets */,
 				1C29EABD2989451D001BD219 /* LaunchScreen.storyboard */,
@@ -98,6 +100,7 @@
 				1C29EAC92989470F001BD219 /* HomeController.swift */,
 				1C29EACB2989475B001BD219 /* FavController.swift */,
 				1CCAB2A029A07F6900118D8C /* ExpandFeature.swift */,
+				1C735C2F29B264A400E87F50 /* OnBoardingController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -204,12 +207,13 @@
 				1C5F00A32991882D00662BA0 /* SearchResultCell.swift in Sources */,
 				1CE58A67298F49F300E35BCF /* SearchHeaderView.swift in Sources */,
 				1CFA64152995C91D00069400 /* BusinessNetworking.swift in Sources */,
-				1C29EAB72989451C001BD219 /* ViewController.swift in Sources */,
+				1C29EAB72989451C001BD219 /* SplashScreenController.swift in Sources */,
 				1C29EAB32989451C001BD219 /* AppDelegate.swift in Sources */,
 				1CFA64112995C8CB00069400 /* BusinessCardModel.swift in Sources */,
 				1CCAB2A129A07F6900118D8C /* ExpandFeature.swift in Sources */,
 				1C29EAC829894615001BD219 /* TabBarView.swift in Sources */,
 				1C29EACC2989475B001BD219 /* FavController.swift in Sources */,
+				1C735C3029B264A400E87F50 /* OnBoardingController.swift in Sources */,
 				1C29EAB52989451C001BD219 /* SceneDelegate.swift in Sources */,
 				1CFA64132995C8F100069400 /* BusinessDataModel.swift in Sources */,
 				1C29EACA2989470F001BD219 /* HomeController.swift in Sources */,
