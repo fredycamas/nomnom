@@ -367,6 +367,7 @@
 				DEVELOPMENT_TEAM = FLFST97F5N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = nomnom/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need permition to access your Location for search for restaurants near by.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -397,6 +398,7 @@
 				DEVELOPMENT_TEAM = FLFST97F5N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = nomnom/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need permition to access your Location for search for restaurants near by.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
