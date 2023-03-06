@@ -234,9 +234,9 @@ class OnBoardingController: UIViewController {
     //MARK: - request permission to access the user's device location
     
     private func requestLocationPermission() {
-        locationManager.delegate = self
-        
-        switch CLLocationManager.authorizationStatus() {
+        //locationManager.delegate = self
+
+        switch locationManager.authorizationStatus {
         case .authorizedWhenInUse, .authorizedAlways:
             // Location permission already granted
             break
@@ -250,7 +250,9 @@ class OnBoardingController: UIViewController {
                                           preferredStyle: .alert)
             
             let settingsAction = UIAlertAction(title: "Settings", style: .default) { _ in
-                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+                if let url = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(url)
+                }
             }
             
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
