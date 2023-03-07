@@ -15,7 +15,7 @@ class OnBoardingController: UIViewController {
     private var keyboardHeight: CGFloat = 0
     private let blurEffect = UIBlurEffect(style: .dark)
     private let blurView = UIVisualEffectView()
-
+    
     
     
     private let imageView: UIImageView = {
@@ -72,6 +72,7 @@ class OnBoardingController: UIViewController {
         btn.setTitleColor(.clear, for: .normal)
         btn.backgroundColor = .clear
         btn.setTitle("Continue", for: .normal)
+        btn.addTarget(self, action: #selector(onContinueTapped), for: .touchUpInside)
         return btn
     }()
     
@@ -107,11 +108,11 @@ class OnBoardingController: UIViewController {
     
     private func setupViews() {
         // Add a new view to cover the entire screen
-          blurView.frame = view.bounds
-          blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-          blurView.alpha = 0
-          blurView.effect = blurEffect // Add blur effect
-   
+        blurView.frame = view.bounds
+        blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurView.alpha = 0
+        blurView.effect = blurEffect // Add blur effect
+        
         
         view.addSubview(imageView)
         view.addSubview(zipCodeText)
@@ -228,14 +229,21 @@ class OnBoardingController: UIViewController {
     
     @objc private func handleLocationButtonPressed() {
         print("hello")
-           requestLocationPermission()
-       }
+        requestLocationPermission()
+    }
+    
+    @objc private func onContinueTapped() {
+        let vc = TabBarView()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: false)
+        
+    }
     
     //MARK: - request permission to access the user's device location
     
     private func requestLocationPermission() {
         //locationManager.delegate = self
-
+        
         switch locationManager.authorizationStatus {
         case .authorizedWhenInUse, .authorizedAlways:
             // Location permission already granted
@@ -265,7 +273,7 @@ class OnBoardingController: UIViewController {
             break
         }
     }
-
+    
     
 }
 
@@ -273,9 +281,9 @@ class OnBoardingController: UIViewController {
 extension OnBoardingController: CLLocationManagerDelegate{
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-           // Handle changes to location authorization status
+        // Handle changes to location authorization status
         print(manager.location?.coordinate.latitude)
         print(manager.location?.coordinate.longitude)
         
-       }
+    }
 }
