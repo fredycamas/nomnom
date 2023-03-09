@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 protocol SearchHeaderDelegate {
     func searchBtnPressed(view: SearchHeaderView)
     

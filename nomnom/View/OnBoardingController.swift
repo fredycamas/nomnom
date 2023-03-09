@@ -8,13 +8,19 @@
 import UIKit
 import CoreLocation
 
+
+
 class OnBoardingController: UIViewController {
+    
+    let vc = TabBarView()
     
     // MARK: - Properties
     private let locationManager = CLLocationManager()
     private var keyboardHeight: CGFloat = 0
     private let blurEffect = UIBlurEffect(style: .dark)
     private let blurView = UIVisualEffectView()
+    var longitud:CLLocationDegrees?
+    var latitud:CLLocationDegrees?
     
     
     
@@ -76,14 +82,20 @@ class OnBoardingController: UIViewController {
         return btn
     }()
     
-    
+   
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        
         view.backgroundColor = .white
+       
         setupViews()
         setupConstraints()
+      
         
     }
     
@@ -106,6 +118,8 @@ class OnBoardingController: UIViewController {
     
     // MARK: - Private Methods
     
+  
+
     private func setupViews() {
         // Add a new view to cover the entire screen
         blurView.frame = view.bounds
@@ -233,7 +247,7 @@ class OnBoardingController: UIViewController {
     }
     
     @objc private func onContinueTapped() {
-        let vc = TabBarView()
+        
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: false)
         
@@ -280,10 +294,35 @@ class OnBoardingController: UIViewController {
 
 extension OnBoardingController: CLLocationManagerDelegate{
     
+   
+    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         // Handle changes to location authorization status
-        print(manager.location?.coordinate.latitude)
-        print(manager.location?.coordinate.longitude)
+        longitud =  manager.location?.coordinate.latitude
+        latitud = manager.location?.coordinate.longitude
         
     }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        switch manager.authorizationStatus {
+        case .authorizedAlways, .authorizedWhenInUse:
+            // Location services are enabled and the user has granted permission
+            
+            self.vc.modalPresentationStyle = .fullScreen
+            self.present(self.vc, animated: false)
+            
+            print("Location services are enabled and the user has granted permission")
+        case .denied, .restricted:
+            // The user has denied or restricted location services
+            print("The user has denied or restricted location services")
+        case .notDetermined:
+            // The user has not yet made a choice regarding location services
+            print("The user has not yet made a choice regarding location services")
+        @unknown default:
+            fatalError()
+        }
+    }
 }
+
+
+

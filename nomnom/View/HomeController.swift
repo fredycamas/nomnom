@@ -7,8 +7,11 @@
 
 import UIKit
 
-class HomeController: UICollectionViewController  {
-   
+import CoreLocation
+
+class HomeController: UICollectionViewController, CLLocationManagerDelegate {
+    let locationManager = CLLocationManager()
+    var currentLocation: CLLocation?
     
     //private var collectionView: UICollectionViewController?
     //private let collectionView = UICollectionViewController
@@ -37,11 +40,14 @@ class HomeController: UICollectionViewController  {
         super.viewDidLoad()
         
         businessManagment.delegate = self
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
         
-        businessManagment.fetchData(latitude: CPLatitude, longitude: CPLongitude, category: "restaurants",
-                  limit: 20, sortBy: "distance", locale: "en_US") { (response, error) in
-
-        }
+//        businessManagment.fetchData(latitude: CPLatitude, longitude: CPLongitude, category: "restaurants",
+//                  limit: 20, sortBy: "distance", locale: "en_US") { (response, error) in
+//
+//        }
         collectionView.register(SearchHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchHeaderView.id)
                                 
         //collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
@@ -55,6 +61,16 @@ class HomeController: UICollectionViewController  {
     override func viewWillAppear(_ animated: Bool) {
         
     }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+           guard let location = locations.last else { return }
+           currentLocation = location
+           // Call your API with the current location
+           businessManagment.fetchData(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, category: "restaurants", limit: 20, sortBy: "distance", locale: "en_US") { (response, error) in
+               // Handle the API response
+           }
+           locationManager.stopUpdatingLocation()
+       }
     
 }
 

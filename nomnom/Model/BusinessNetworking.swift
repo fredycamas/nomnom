@@ -5,7 +5,8 @@
 //  Created by Life on 2/9/23.
 //
 
-import Foundation
+import UIKit
+import CoreLocation
 
 protocol BusinessManagmentDelegate{
     func didUpdateBusiness(businessData: [BusinessCardModel])
@@ -18,8 +19,8 @@ struct BusinessManagment {
     
     var delegate:BusinessManagmentDelegate?
     
-    func fetchData(latitude: Double,
-                   longitude: Double,
+    func fetchData(latitude: CLLocationDegrees,
+                   longitude: CLLocationDegrees,
                    category: String,
                    limit: Int,
                    sortBy: String,
@@ -27,6 +28,8 @@ struct BusinessManagment {
                    completionHandler: @escaping ([BusinessCardModel]?, Error?) -> Void) {
         
         let businessURL = "\(baseURL)?latitude=\(latitude)&longitude=\(longitude)&categories=\(category)&limit=\(limit)&sort_by=\(sortBy)&locale=\(locale)"
+        
+        print(businessURL)
         performRequest(businessURL:businessURL)
         
     }
