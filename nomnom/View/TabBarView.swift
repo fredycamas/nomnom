@@ -22,8 +22,9 @@ class TabBarView: UITabBarController{
         //let navController = UINavigationController(rootViewController: myCollectionVC)
         //self.present(navController, animated: true, completion: nil)
         
+       
+        
         homeController.tabBarItem.image = UIImage(systemName: "person")
-        homeController.title = "Home"
         let navController = UINavigationController(rootViewController: homeController)
         
         
@@ -38,3 +39,5 @@ class TabBarView: UITabBarController{
         self.tabBar.backgroundColor = .blue
     }
 }
+
+

@@ -6,87 +6,109 @@
 //
 
 import UIKit
-
 import CoreLocation
 
-class HomeController: UICollectionViewController, CLLocationManagerDelegate {
+
+
+class HomeController: UICollectionViewController {
     let locationManager = CLLocationManager()
     var currentLocation: CLLocation?
-    
-    //private var collectionView: UICollectionViewController?
-    //private let collectionView = UICollectionViewController
+    var isSearchBarVisible = false
     
     init() {
-      
-        
-       let layout = UICollectionViewFlowLayout()
-       // let layout = makeCompositionalLayoutViewControllerWithZoomingCarousel2()
-
+        let layout = UICollectionViewFlowLayout()
         super.init(collectionViewLayout: layout)
     }
-    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     var businessManagment = BusinessManagment()
     var businessCardContainer: [BusinessCardModel] = []
-    let CPLatitude: Double = 40.782483
-    let CPLongitude: Double = -73.963540
-    
     var searchText:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.leftBarButtonItems = createLeftBarButtonItems()
         
         businessManagment.delegate = self
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
-//        businessManagment.fetchData(latitude: CPLatitude, longitude: CPLongitude, category: "restaurants",
-//                  limit: 20, sortBy: "distance", locale: "en_US") { (response, error) in
-//
-//        }
-        collectionView.register(SearchHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchHeaderView.id)
-                                
-        //collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        
+        //    }
+        collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.id)
         collectionView.register(SearchResultCell.self, forCellWithReuseIdentifier: SearchResultCell.id)
-       // collectionView.register(SearchHeaderView.self, forCellWithReuseIdentifier: SearchHeaderView.id)
         collectionView.keyboardDismissMode = .interactive
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 111, right: 0)
         
+        collectionView.collectionViewLayout = createLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-           guard let location = locations.last else { return }
-           currentLocation = location
-           // Call your API with the current location
-           businessManagment.fetchData(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, category: "restaurants", limit: 20, sortBy: "distance", locale: "en_US") { (response, error) in
-               // Handle the API response
-           }
-           locationManager.stopUpdatingLocation()
-       }
     
+    func createLeftBarButtonItems() -> [UIBarButtonItem] {
+        let searchItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTappedItem))
+        let locationItem = UIBarButtonItem(image: UIImage(systemName: "location"), style: .plain, target: self, action: #selector(locationButtonTapped))
+        let profileItem = UIBarButtonItem(image: UIImage(systemName: "person.circle"), style: .plain, target: self, action: #selector(profileButtonTapped))
+        
+        return [searchItem, locationItem, profileItem]
+    }
+    
+    @objc private func deviceOrientationDidChange() {
+        // Update the layout when the device orientation changes
+        let layout = makeCompositionalLayoutViewControllerWithZoomingCarousel()
+        collectionView.setCollectionViewLayout(layout, animated: true)
+    }
 }
 
-extension HomeController: SearchHeaderDelegate {
+
+extension HomeController: UISearchBarDelegate,UISearchResultsUpdating  {
     func txtFile(item: String) {
         searchText = item
-        
-        businessManagment.fetchData(latitude: CPLatitude, longitude: CPLongitude, category: item,
-                  limit: 20, sortBy: "distance", locale: "en_US") { (response, error) in
-            
-        }
-        
         collectionView.reloadData()    }
     
-    func searchBtnPressed(view: SearchHeaderView) {
+    func searchBtnPressed(view: HeaderView) {
         print("searchTapped")
+    }
+    
+    @objc private func searchButtonTappedItem() {
+        isSearchBarVisible = !isSearchBarVisible
+        collectionView.collectionViewLayout.invalidateLayout()
+               
+        if isSearchBarVisible {
+            let searchController = UISearchController(searchResultsController: nil)
+            searchController.searchResultsUpdater = self
+            searchController.searchBar.delegate = self
+            searchController.searchBar.placeholder = "Search"
+            searchController.searchBar.showsCancelButton = false
+            searchController.obscuresBackgroundDuringPresentation = false
+            searchController.hidesNavigationBarDuringPresentation = false
+            searchController.searchBar.barTintColor = .red // Set the background color to red
+            navigationItem.searchController = searchController
+            navigationItem.hidesSearchBarWhenScrolling = false // Ensure that the search bar is always visible
+        } else {
+            navigationItem.searchController = nil
+            navigationItem.hidesSearchBarWhenScrolling = true // Restore the default behavior
+        }
+    }
+    
+    @objc private func locationButtonTapped() {
+        // Handle location button tap
+    }
+    
+    @objc private func profileButtonTapped() {
+        // Handle profile button tap
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        print("searc Pressed")
     }
     
 }
@@ -95,14 +117,47 @@ extension HomeController: SearchHeaderDelegate {
  */
 extension HomeController {
     
+    func createLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewCompositionalLayout { (sectionIndex, environment) -> NSCollectionLayoutSection? in
+            
+            // Header
+            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(110))
+            let headerItem = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+            
+            // Item
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.5))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            
+            // Group
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(500))
+            let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 2)
+            group.interItemSpacing = .fixed(10)
+            group.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+            
+            // Section
+            let section = NSCollectionLayoutSection(group: group)
+            section.boundarySupplementaryItems = [headerItem]
+            section.interGroupSpacing = 10
+            
+            return section
+        }
+        
+        return layout
+    }
+    
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        collectionView.collectionViewLayout = createLayout()
+//    }
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return  businessCardContainer.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-       
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCell.id, for: indexPath) as! SearchResultCell
-            //cell.delegate = self
+        //cell.delegate = self
         
         
         cell.businessImageView.load(urlString: businessCardContainer[indexPath.row].urlImage)
@@ -111,38 +166,28 @@ extension HomeController {
         cell.rateBusiness.text = String("Rate: \(businessCardContainer[indexPath.row].rating)")
         cell.likeButton.isSelected = true
         return cell
-
+        
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("We are here \(indexPath)")
         let expandedVC = ExpandFeatureController()
         
-            navigationController?.pushViewController(expandedVC, animated: true)
-    }
-}
-
-extension HomeController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        
-        return CGSize(width: view.frame.width, height: 330)
+        navigationController?.pushViewController(expandedVC, animated: true)
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header =
-            collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchHeaderView.id, for: indexPath) as! SearchHeaderView
-        header.delegate = self
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.id, for: indexPath) as! HeaderView
+       
         return header
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-   
-            return CGSize(width: (view.frame.width), height: (view.frame.height/2) - 210)
-      
+        return CGSize(width: (view.frame.width), height: (view.frame.height/2) - 210)
     }
-
+    
 }
+
 
 
 extension UIImageView {
@@ -168,10 +213,10 @@ extension HomeController: BusinessManagmentDelegate{
             self.businessCardContainer = businessData
             self.collectionView.reloadData()
         }
-       
+        
     }
-
-
+    
+    
 }
 
 
@@ -181,5 +226,21 @@ extension HomeController: UITextFieldDelegate{
         print("search keyboard")
         
         return true
+    }
+}
+
+extension HomeController: CLLocationManagerDelegate{
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        currentLocation = location
+        
+        let category = "restaurants"
+        let limit = 20
+        let locale = "en_US"
+        
+        businessManagment.fetchData(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, category: category, limit: limit, sortBy: "distance", locale: locale) { (response, error) in
+            // Handle the API response
+        }
+        locationManager.stopUpdatingLocation()
     }
 }

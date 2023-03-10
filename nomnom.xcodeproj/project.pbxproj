@@ -19,7 +19,7 @@
 		1C5F00A32991882D00662BA0 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5F00A22991882D00662BA0 /* SearchResultCell.swift */; };
 		1C735C3029B264A400E87F50 /* OnBoardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C735C2F29B264A400E87F50 /* OnBoardingController.swift */; };
 		1CCAB2A129A07F6900118D8C /* ExpandFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCAB2A029A07F6900118D8C /* ExpandFeature.swift */; };
-		1CE58A67298F49F300E35BCF /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE58A66298F49F300E35BCF /* SearchHeaderView.swift */; };
+		1CE58A67298F49F300E35BCF /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE58A66298F49F300E35BCF /* HeaderView.swift */; };
 		1CE58A69298F4D4500E35BCF /* ExtensionTextFieldAssesory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE58A68298F4D4500E35BCF /* ExtensionTextFieldAssesory.swift */; };
 		1CFA64112995C8CB00069400 /* BusinessCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CFA64102995C8CB00069400 /* BusinessCardModel.swift */; };
 		1CFA64132995C8F100069400 /* BusinessDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CFA64122995C8F100069400 /* BusinessDataModel.swift */; };
@@ -41,7 +41,7 @@
 		1C5F00A22991882D00662BA0 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		1C735C2F29B264A400E87F50 /* OnBoardingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingController.swift; sourceTree = "<group>"; };
 		1CCAB2A029A07F6900118D8C /* ExpandFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandFeature.swift; sourceTree = "<group>"; };
-		1CE58A66298F49F300E35BCF /* SearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHeaderView.swift; sourceTree = "<group>"; };
+		1CE58A66298F49F300E35BCF /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		1CE58A68298F4D4500E35BCF /* ExtensionTextFieldAssesory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTextFieldAssesory.swift; sourceTree = "<group>"; };
 		1CFA64102995C8CB00069400 /* BusinessCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCardModel.swift; sourceTree = "<group>"; };
 		1CFA64122995C8F100069400 /* BusinessDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDataModel.swift; sourceTree = "<group>"; };
@@ -108,7 +108,7 @@
 		1CE58A65298F49CF00E35BCF /* CollectionViewGroup */ = {
 			isa = PBXGroup;
 			children = (
-				1CE58A66298F49F300E35BCF /* SearchHeaderView.swift */,
+				1CE58A66298F49F300E35BCF /* HeaderView.swift */,
 				1C5F00A22991882D00662BA0 /* SearchResultCell.swift */,
 			);
 			path = CollectionViewGroup;
@@ -205,7 +205,7 @@
 			files = (
 				1CE58A69298F4D4500E35BCF /* ExtensionTextFieldAssesory.swift in Sources */,
 				1C5F00A32991882D00662BA0 /* SearchResultCell.swift in Sources */,
-				1CE58A67298F49F300E35BCF /* SearchHeaderView.swift in Sources */,
+				1CE58A67298F49F300E35BCF /* HeaderView.swift in Sources */,
 				1CFA64152995C91D00069400 /* BusinessNetworking.swift in Sources */,
 				1C29EAB72989451C001BD219 /* SplashScreenController.swift in Sources */,
 				1C29EAB32989451C001BD219 /* AppDelegate.swift in Sources */,
