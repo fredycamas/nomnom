@@ -25,7 +25,8 @@ class HomeController: UICollectionViewController {
     }
     
     var businessManagment = BusinessManagment()
-    var businessCardContainer: [BusinessCardModel] = []
+    var cardContainerOnDisplay: [BusinessCardModel] = []
+    var cardContainer: [BusinessCardModel] = []
     var searchText:String?
     
     override func viewDidLoad() {
@@ -66,10 +67,19 @@ class HomeController: UICollectionViewController {
         let layout = makeCompositionalLayoutViewControllerWithZoomingCarousel()
         collectionView.setCollectionViewLayout(layout, animated: true)
     }
+    
+    @objc private func locationButtonTapped() {
+        // Handle location button tap
+    }
+    
+    @objc private func profileButtonTapped() {
+        // Handle profile button tap
+    }
 }
 
 
 extension HomeController: UISearchBarDelegate,UISearchResultsUpdating  {
+    
     func txtFile(item: String) {
         searchText = item
         collectionView.reloadData()    }
@@ -81,7 +91,7 @@ extension HomeController: UISearchBarDelegate,UISearchResultsUpdating  {
     @objc private func searchButtonTappedItem() {
         isSearchBarVisible = !isSearchBarVisible
         collectionView.collectionViewLayout.invalidateLayout()
-               
+        
         if isSearchBarVisible {
             let searchController = UISearchController(searchResultsController: nil)
             searchController.searchResultsUpdater = self
@@ -99,13 +109,44 @@ extension HomeController: UISearchBarDelegate,UISearchResultsUpdating  {
         }
     }
     
-    @objc private func locationButtonTapped() {
-        // Handle location button tap
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        let searchFields: [KeyPath<BusinessCardModel, String>] = [\BusinessCardModel.name]
+        
+        if searchText.isEmpty {
+            cardContainerOnDisplay = cardContainer.sorted { $0.name < $1.name }
+            return
+        }
+        
+        let searchTerms = searchText.lowercased().split(separator: " ")
+        cardContainerOnDisplay = cardContainer.filter { card in
+            for field in searchFields {
+                let value = card[keyPath: field].lowercased()
+                for term in searchTerms {
+                    if !value.contains(term) {
+                        return false
+                    }
+                }
+            }
+            return true
+        }
+        .sorted { $0.name < $1.name }
+        
+        
+        collectionView.reloadData()
     }
     
-    @objc private func profileButtonTapped() {
-        // Handle profile button tap
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // Handle the search button press
+        // You can perform a search operation based on the search text and update the collection view
     }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        // Handle the cancel button press
+        // You can clear the search text and reset the collection view to the original data source
+    }
+    
+    
     
     func updateSearchResults(for searchController: UISearchController) {
         print("searc Pressed")
@@ -144,26 +185,23 @@ extension HomeController {
         
         return layout
     }
-    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        collectionView.collectionViewLayout = createLayout()
-//    }
+ 
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return  businessCardContainer.count
+        return  cardContainerOnDisplay.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCell.id, for: indexPath) as! SearchResultCell
+        
         //cell.delegate = self
         
         
-        cell.businessImageView.load(urlString: businessCardContainer[indexPath.row].urlImage)
-        cell.nameBusiness.text = businessCardContainer[indexPath.row].name
-        cell.priceBusiness.text = businessCardContainer[indexPath.row].price
-        cell.rateBusiness.text = String("Rate: \(businessCardContainer[indexPath.row].rating)")
+        cell.businessImageView.load(urlString: cardContainerOnDisplay[indexPath.row].urlImage)
+        cell.nameBusiness.text = cardContainerOnDisplay[indexPath.row].name
+        cell.priceBusiness.text = cardContainerOnDisplay[indexPath.row].price
+        cell.rateBusiness.text = String("Rate: \(cardContainerOnDisplay[indexPath.row].rating)")
         cell.likeButton.isSelected = true
         return cell
         
@@ -178,7 +216,7 @@ extension HomeController {
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.id, for: indexPath) as! HeaderView
-       
+        
         return header
     }
     
@@ -210,7 +248,8 @@ extension UIImageView {
 extension HomeController: BusinessManagmentDelegate{
     func didUpdateBusiness(businessData: [BusinessCardModel]) {
         DispatchQueue.main.async {
-            self.businessCardContainer = businessData
+            self.cardContainerOnDisplay = businessData.sorted { $0.name < $1.name }
+            self.cardContainer = businessData
             self.collectionView.reloadData()
         }
         
@@ -223,12 +262,13 @@ extension HomeController: BusinessManagmentDelegate{
 extension HomeController: UITextFieldDelegate{
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("search keyboard")
+        print("search keyboard \(textField.text)")
         
         return true
     }
 }
 
+//MARK: CLLocationManagerDelegate
 extension HomeController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
